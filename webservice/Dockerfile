@@ -1,6 +1,20 @@
 FROM ubuntu:14.04
 
-# Need wine 1.7.xx for this all to work, so we'll use the PPA:
+# The release version of the ZKAccess C3/inBio control software.
+# This version must match the filename as <ZK_RELEASE>.rar
+ARG ZK_RELEASE=zkaccess_usa_5.3.12334
+
+# Default settings for the connection to the database.
+# These will be stored in the image to be used in the container.
+ARG ZK_DATABASE_HOST=zkecomysql
+ARG ZK_DATABASE_PORT=3306
+ARG ZK_DATABASE_NAME=zkeco_db
+ARG ZK_DATABASE_USER=zkeco
+ARG ZK_DATABASE_PASS=secret
+
+
+# Need wine 1.7.xx for this all to work, so we'll use the PPA
+# Next to Wine, also rar and the mysql client libraries are installed.
 RUN dpkg --add-architecture i386 \
  && echo "deb http://ppa.launchpad.net/ubuntu-wine/ppa/ubuntu trusty main" >> /etc/apt/sources.list.d/wine.list \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5A9A06AEF9CB8DB0 \
@@ -8,23 +22,6 @@ RUN dpkg --add-architecture i386 \
  && apt-get update \
  && apt-get install --no-install-recommends -qfy wine1.7 unrar mysql-client \
  && apt-get clean
-
-# Note: The RAR file is name zkaccess_usa_5.3.12434, but it is release 5.3.12334.
-# For convenience, the rar filename must be adjusted to the top level directory version.
-ARG ZK_RELEASE=zkaccess_usa_5.3.12334
-
-ARG ZK_DATABASE_HOST=zkecomysql
-ARG ZK_DATABASE_PORT=3306
-ARG ZK_DATABASE_NAME=zkeco_db
-ARG ZK_DATABASE_USER=zkeco
-ARG ZK_DATABASE_PASS=secret
-
-ENV ZK_RELEASE=$ZK_RELEASE
-ENV ZK_DATABASE_HOST=$ZK_DATABASE_HOST
-ENV ZK_DATABASE_PORT=$ZK_DATABASE_PORT
-ENV ZK_DATABASE_NAME=$ZK_DATABASE_NAME
-ENV ZK_DATABASE_USER=$ZK_DATABASE_USER
-ENV ZK_DATABASE_PASS=$ZK_DATABASE_PASS
 
 COPY $ZK_RELEASE.rar /tmp/
 
