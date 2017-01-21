@@ -1,8 +1,7 @@
 # Dockerized ZKAccess C3/inBio access control
 Running the ZKAccess control software for C3 access panels in Docker
 
-
-# Setup
+## Setup
 The image that can be created requires the ZKAccess C3/inBio control software.
 This software is not included in this repository, but can be downloaded for free
 from http://www.zkaccess.com/software-downloads/
@@ -13,6 +12,12 @@ Note: The (current - at time of writing - release) RAR file is named zkaccess_us
 but it is release 5.3.12334 (according to the top level directory in the archive).
 For convenience, the rar filename is renamed to match the top level directory version.
 
-# Using the access control software
+## Using the access control software
 When the containers are started, the access control software is running
 at port 8000 and can be accessed at http://localhost:8000/
+
+
+## To do:
+- [ ] Properly launch Windows services for the access control software (board access is broken!)
+- [ ] Creating a volume and mounting it for the backup service
+- [ ] Add support for database initialization
