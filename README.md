@@ -1,4 +1,4 @@
-# docker-zkaccess-c3
+# Dockerized ZKAccess C3/inBio access control
 Running the ZKAccess control software for C3 access panels in Docker
 
 
@@ -15,4 +15,4 @@ For convenience, the rar filename is renamed to match the top level directory ve
 
 # Using the access control software
 When the containers are started, the access control software is running
-at port 8080 and can be accessed at http://localhost:8080.
+at port 8000 and can be accessed at http://localhost:8000/

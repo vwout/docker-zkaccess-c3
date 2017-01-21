@@ -8,11 +8,11 @@ services:
       #  ZK_DATABASE_HOST: mysql-host
       #  ZK_DATABASE_PORT: 3306
       #  ZK_DATABASE_NAME: zkeco_db
-      #  ZK_DATABASE_USER: zkeco
-      #  ZK_DATABASE_PASS: c3
+      #  ZK_DATABASE_USER: db-user
+      #  ZK_DATABASE_PASS: db-pass
     ports:
       - 5000
-      - 8080:8080
+      - 8000:8000
     links: 
       - zkecomysql
 #      - zkecomemcachedservice
